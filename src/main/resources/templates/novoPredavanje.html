@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"></meta>
+    <link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Novo predavanje</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img th:src="@{../images/logo1.png}" alt="Logo" class="col-md-offset-3 col-sm-offset-3"> 
+            <h3>Prijedlog predavanja</h3>
+        </header>
+        <br>
+        <form class="form-horizontal" method="post" th:object="${predavanje}">
+            <div class="form-group">
+                <label class="control-label col-sm-4 col-md-4" for="predavac.ime">Predavač:</label>
+                <div class="col-sm-8 col-md-4">
+                    <input type="text" class="form-control" th:field="*{predavac.ime}" placeholder="Unesite ime">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 col-md-4" for="predavac.pozicija">Pozicija u firmi:</label>
+                <div class="col-sm-8 col-md-4">
+                    <select th:field="*{predavac.pozicija}" class="form-control">
+                        <option value="" selected class="hide">---Odaberite vrijednost---</option>
+                        <option th:each="pozicija : ${pozicije}" th:value="${pozicija}" th:text="${pozicija}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 col-md-4" for="predavanje.tema">Tema:</label>
+                <div class="col-sm-8 col-md-4">
+                    <input type="text" class="form-control" th:field="${predavanje.tema}" placeholder="Unesite temu">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 col-md-4" for="predavanje.sadrzaj">Kratki sadržaj:</label>
+                <div class="col-sm-8 col-md-4">
+                    <textarea rows="4" class="form-control" th:field="${predavanje.sadrzaj}" placeholder="Unesite kratki sadržaj"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 col-md-4" for="predavanje.vrsta">Vrsta predavanja:</label>
+                <div class="col-sm-8 col-md-4">
+                    <select th:field="${predavanje.vrsta}" class="form-control">
+                        <option value="" selected class="hide">---Odaberite vrijednost---</option>
+                        <option th:each="vrsta : ${vrste}" th:value="${vrsta}" th:text="${vrsta}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-md-offset-4 col-sm-4 col-md-4">
+                    <input type="submit" class="btn btn-primary" value="Predaj prijedlog predavanja">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
