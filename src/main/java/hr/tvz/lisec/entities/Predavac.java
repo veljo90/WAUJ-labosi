@@ -1,4 +1,4 @@
-package hr.tvz.lisec;
+package hr.tvz.lisec.entities;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

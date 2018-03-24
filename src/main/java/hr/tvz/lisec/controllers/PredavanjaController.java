@@ -1,4 +1,4 @@
-package hr.tvz.lisec;
+package hr.tvz.lisec.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import hr.tvz.lisec.entities.Predavac;
+import hr.tvz.lisec.entities.Predavanje;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
