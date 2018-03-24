@@ -1,12 +1,29 @@
 package hr.tvz.lisec;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import lombok.Data;
 
 @Data
 public class Predavanje {
+	
+	@Valid
 	private Predavac predavac;
+	
+	//@NotEmpty(message = "Niste unijeli temu predavanja")
+	@NotNull
+	@Size(min = 5, max = 20, message = "Tema mora sadržavati između 5 i 20 znakova")
 	private String tema;
+	
+	//@NotEmpty(message = "Niste unijeli sadržaj predavanja")
+	@NotNull
+	@Size(min = 30, max = 300, message = "Sadržaj mora sadržavati između 30 i 300 znakova")
 	private String sadrzaj;
+	
+	@NotNull(message = "Niste odabrali vrstu predavanja")
 	private Vrsta vrsta;
 	
 	public static enum Vrsta {
