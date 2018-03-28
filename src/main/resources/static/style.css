@@ -23,3 +23,7 @@ h3 {
 	max-width: 250px;
 	padding: 30px;
 }
+
+.inline {
+	display: inline;
+}

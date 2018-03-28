@@ -76,4 +76,13 @@ public class PredavanjaController {
 		status.setComplete();
 		return "redirect:/predavanja/novo";
 	}
+	
+	@GetMapping("/prikaziPredavanja")
+	public String showClasses(Model model) {
+		log.info("Prikazujem sva predavanja");
+		
+		model.addAttribute("popisPredavanja", predavanjeRepository.findAll());
+		
+		return "unesenaPredavanja";
+	}
 }
