@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7/css/bootstrap.css">
+	<title>Konferencija</title>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<img th:src="@{/images/logo1.png}" alt="Logo" class="col-md-offset-3 col-sm-offset-3">
+			<h3>
+				Popis predavanja
+			</h3>
+		</header>
+		<br>
+		<table class="table">
+			<tr>
+				<th>Predavač</th>
+				<th>Pozicija u firmi</th>
+				<th>Tema</th>
+				<th>Kratki sadržaj</th>
+				<th>Vrsta predavanja</th>
+			</tr>
+			<tr th:each="predavanje : ${session.listaPredavanja}">
+				<td>
+					<span th:text="${predavanje.predavac.ime}">PREDAVAC.IME</span>
+				</td>
+				<td>
+					<span th:text="${predavanje.predavac.pozicija}">PREDAVAC.POZICIJA</span>
+				</td>
+				<td>
+					<span th:text="${predavanje.tema}">TEMA</span>
+				</td>
+				<td>
+					<span th:text="${predavanje.sadrzaj}">SADRZAJ</span>
+				</td>
+				<td>
+					<span th:text="${predavanje.vrsta}">VRSTA</span>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<a class="btn btn-default" th:href="@{/predavanja/novo}">Povratak</a>
+	</div>
+</body>
+
+</html>
