@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta charset="UTF-8">
@@ -20,6 +22,15 @@
                 koje ste predložili. 
 			</h3>
 			<a class="btn btn-default" th:href="@{/predavanja/resetBrojac}">Resetiraj brojač</a>
+			
+			<div sec:authorize="hasRole('ROLE_ADMIN')" >
+				<div th:unless="${predavanje.objavljeno}" >
+					<h5>Predavanje nije objavljeno u programu konferencije.</h5>
+				</div>
+				<div th:if="${predavanje.objavljeno}" >
+					<h5>Predavanje je objavljeno i vidljivo u programu konferencije.</h5>
+				</div>
+			</div>
 		</header>
 		<br>
 		<table class="table">

@@ -26,6 +26,8 @@ public class Predavanje {
 	@NotNull(message = "Niste odabrali vrstu predavanja")
 	private Vrsta vrsta;
 	
+	private Boolean objavljeno = true;
+	
 	public static enum Vrsta {
 		PREZENTACIJA,
 		RADIONICA
