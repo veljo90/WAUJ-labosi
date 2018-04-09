@@ -16,6 +16,14 @@
 		<header>
 			<img th:src="@{/images/logo1.png}" alt="Logo"
 				class="col-md-offset-3 col-sm-offset-3">
+				
+			<div sec:authorize="isAuthenticated()" class="col-sm-offset-8">
+				<form method="POST" th:action="@{/logout}">
+					Ulogirani ste kao <span sec:authentication="name">Korisnik</span>.
+					<input type="submit" value="Logout" class="btn btn-danger" />
+				</form>
+			</div>
+			
 			<h3>
 				Čestitamo, vaše predavanje je prihvaćeno. Ovo je
 				<span th:text="${session.listaPredavanja.size()}">broj predavanja</span>. predavanje

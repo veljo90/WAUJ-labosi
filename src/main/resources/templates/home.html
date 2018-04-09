@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
@@ -13,6 +16,13 @@
     <div class="container">
         <header>
             <img th:src="@{/images/logo1.png}" alt="Logo">
+            
+            <div sec:authorize="isAuthenticated()" class="col-sm-offset-8">
+				<form method="POST" th:action="@{/logout}">
+					Ulogirani ste kao <span sec:authentication="name">Korisnik</span>.
+					<input type="submit" value="Logout" class="btn btn-danger" />
+				</form>
+			</div>
         </header>
         <div class="center-block text-center">
             <a class="btn btn-primary centerButton" th:href="@{/predavanja/novo}">Predloži novo predavanje</a>
