@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Konferencija</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img th:src="@{/images/logo1.png}" alt="Logo">
+            
+            <div sec:authorize="isAuthenticated()" class="col-sm-offset-8">
+				<form method="POST" th:action="@{/logout}">
+					Ulogirani ste kao <span sec:authentication="name">Korisnik</span>.
+					<input type="submit" value="Logout" class="btn btn-danger" />
+				</form>
+			</div>
+			
+			<div sec:authorize="isAnonymous()" class="col-sm-offset-8">
+				<a class="btn btn-primary" th:href="@{/login}">Ulogirajte se</a>
+			</div>
+				
+			
+        </header>
+        <div class="text-center">
+            <h2>Informacije o konferenciji</h2>
+        </div>
+    </div>
+</body>
+
+</html>
