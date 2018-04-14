@@ -40,6 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.defaultSuccessUrl("/predavanja/novo", true)
 			.and()
 				.logout()
-					.logoutSuccessUrl("/login");
+					.logoutSuccessUrl("/login")
+			.and()
+				.csrf().ignoringAntMatchers("/h2-console/**")
+			.and()
+				.headers().frameOptions().sameOrigin();
 	}
 }

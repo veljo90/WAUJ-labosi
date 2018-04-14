@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import hr.tvz.lisec.data.PredavanjeRepository;
 import hr.tvz.lisec.entities.Predavac;
 import hr.tvz.lisec.entities.Predavanje;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +26,13 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(path = "/predavanja")
 @SessionAttributes({"vrste", "pozicije", "listaPredavanja"})
 public class PredavanjaController {
+	
+	private final PredavanjeRepository predavanjeRepository;
+	
+	@Autowired
+	public PredavanjaController(PredavanjeRepository predavanjeRepository) {
+		this.predavanjeRepository = predavanjeRepository;
+	}
 
 	@ModelAttribute("listaPredavanja")
 	public List<Predavanje> setListaPredavanja(){
@@ -50,7 +59,9 @@ public class PredavanjaController {
 			return "novoPredavanje";
 		}
 		
-		model.addAttribute("predavanje", predavanje);
+		predavanjeRepository.save(predavanje);
+		
+		log.info("Predavanje je spremljeno");
 
 		@SuppressWarnings("unchecked")
 		ArrayList<Predavanje> listaPredavanja = (ArrayList<Predavanje>) model.asMap().get("listaPredavanja");
