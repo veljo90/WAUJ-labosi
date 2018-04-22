@@ -27,3 +27,10 @@ create table if not exists Predavanje_Predavac (
 	predavanje bigint not null,
 	predavac bigint not null
 );
+
+create table if not exists Dvorana(
+	id identity,
+	naziv varchar(20) not null,
+	kapacitet int not null,
+	dostupnost bit not null
+);
