@@ -7,3 +7,12 @@ insert into Korisnik (username, password, enabled)
 insert into KorisnikPrava (username, authority) values ('admin', 'ROLE_ADMIN');
 insert into KorisnikPrava (username, authority) values ('admin', 'ROLE_USER');
 insert into KorisnikPrava (username, authority) values ('student', 'ROLE_USER');
+
+insert into Dvorana (naziv, kapacitet, dostupnost)
+	values ('Dvorana1', 30, 0);
+	
+insert into Dvorana (naziv, kapacitet, dostupnost)
+	values ('Dvorana2', 20, 1);
+	
+insert into Dvorana (naziv, kapacitet, dostupnost)
+	values ('Dvorana3', 25, 1);
