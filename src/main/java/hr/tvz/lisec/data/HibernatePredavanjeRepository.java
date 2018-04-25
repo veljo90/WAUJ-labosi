@@ -30,7 +30,7 @@ public class HibernatePredavanjeRepository implements PredavanjeRepository {
 	}
 
 	@Override
-	public Predavanje findOne(String id) {
+	public Predavanje findOne(long id) {
 		return sessionFactory.getCurrentSession().find(Predavanje.class, id);
 	}
 
@@ -39,6 +39,22 @@ public class HibernatePredavanjeRepository implements PredavanjeRepository {
 		Serializable id = sessionFactory.getCurrentSession().save(predavanje);
 		predavanje.setId((long) id);
 		return predavanje;
+	}
+
+
+	@Override
+	public void update(Predavanje predavanje) {
+		sessionFactory.getCurrentSession().update(predavanje);
+	}
+
+	@Override
+	public void delete(long id) {
+		
+		Predavanje predavanje = findOne(id);
+		
+		if (predavanje != null) {
+			sessionFactory.getCurrentSession().delete(predavanje);
+		}
 	}
 
 }
