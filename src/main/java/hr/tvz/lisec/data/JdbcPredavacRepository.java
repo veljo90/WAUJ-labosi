@@ -60,4 +60,16 @@ public class JdbcPredavacRepository implements PredavacRepository {
 		
 		return predavac;
 	}
+
+	@Override
+	public void update(Predavac predavac) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+		
+	}
 }

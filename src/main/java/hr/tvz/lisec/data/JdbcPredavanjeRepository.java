@@ -42,7 +42,7 @@ public class JdbcPredavanjeRepository implements PredavanjeRepository {
 	}
 
 	@Override
-	public Predavanje findOne(String id) {
+	public Predavanje findOne(long id) {
 		return jdbc.queryForObject(FIND_ALL_QUERRY + "where id = ?", this::mapRowToPredavanje);
 	}
 
@@ -92,5 +92,19 @@ public class JdbcPredavanjeRepository implements PredavanjeRepository {
 		predavanje.setPredavac(predavac);
 		
 		return predavanje;
+	}
+
+
+	@Override
+	public void update(Predavanje predavanje) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
