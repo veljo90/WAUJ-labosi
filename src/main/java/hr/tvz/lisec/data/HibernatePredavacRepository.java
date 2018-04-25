@@ -40,4 +40,18 @@ public class HibernatePredavacRepository implements PredavacRepository {
 		return predavac;
 	}
 
+	@Override
+	public void update(Predavac predavac) {
+		sessionFactory.getCurrentSession().update(predavac);
+	}
+
+	@Override
+	public void delete(long id) {
+		Object persistentInstance = sessionFactory.getCurrentSession().load(Predavac.class, id);
+		
+		if (persistentInstance != null) {
+			sessionFactory.getCurrentSession().delete(persistentInstance);
+	    }
+	}
+
 }
