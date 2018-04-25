@@ -40,6 +40,7 @@
 				<th>Tema</th>
 				<th>Kratki sadržaj</th>
 				<th>Vrsta predavanja</th>
+				<th>Uređivanje</th>
 			</tr>
 			<tr th:each="predavanje : ${popisPredavanja}">
 				<td>
@@ -56,6 +57,15 @@
 				</td>
 				<td>
 					<span th:text="${predavanje.vrsta}">VRSTA</span>
+				</td>
+				<td>
+					<form action="#" th:action="@{'/predavanja/update/{id}'(id=${predavanje.id})}" th:method="get" >
+  						<input type="submit"  class="btn btn-default" value="Ažuriraj">
+					</form>
+					
+					<form action="#" th:action="@{'/predavanja/delete/{id}'(id=${predavanje.id})}" th:method="delete" >
+  						<input type="submit" class="btn btn-default" value="Obriši">
+					</form>
 				</td>
 			</tr>
 		</table>
