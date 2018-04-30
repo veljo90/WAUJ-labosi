@@ -29,7 +29,7 @@ public class HibernatePredavacRepository implements PredavacRepository {
 	}
 
 	@Override
-	public Predavac findOne(String id) {
+	public Predavac findOne(Long id) {
 		return sessionFactory.getCurrentSession().find(Predavac.class, id);
 	}
 
@@ -39,5 +39,19 @@ public class HibernatePredavacRepository implements PredavacRepository {
 		predavac.setId((long) id);
 		return predavac;
 	}
+
+	@Override
+	public Predavac update(Predavac predavac) {
+		sessionFactory.getCurrentSession().update(predavac);
+		return predavac;
+	}
+
+	@Override
+	public void delete(Long id) {
+		Predavac predavac = findOne(id);
+		sessionFactory.getCurrentSession().delete(predavac);
+	}
+	
+	
 
 }
