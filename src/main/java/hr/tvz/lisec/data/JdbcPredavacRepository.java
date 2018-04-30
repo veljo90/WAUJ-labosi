@@ -33,7 +33,7 @@ public class JdbcPredavacRepository implements PredavacRepository {
 	}
 
 	@Override
-	public Predavac findOne(String id) {
+	public Predavac findOne(Long id) {
 		return jdbc.queryForObject("select id, ime, pozicija from Predavac where id = ?", this::mapRowToPredavac, id);
 	}
 
@@ -59,5 +59,17 @@ public class JdbcPredavacRepository implements PredavacRepository {
 		predavac.setPozicija(Predavac.Pozicija.valueOf(rs.getString("pozicija")));
 		
 		return predavac;
+	}
+
+	@Override
+	public Predavac update(Predavac predavac) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
 	}
 }
