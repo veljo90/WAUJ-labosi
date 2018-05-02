@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import hr.tvz.lisec.data.DvoraneRepository;
 import hr.tvz.lisec.data.PredavanjeRepository;
 import hr.tvz.lisec.entities.Predavac;
 import hr.tvz.lisec.entities.Predavanje;
@@ -28,10 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 public class PredavanjaController {
 	
 	private final PredavanjeRepository predavanjeRepository;
+	private final DvoraneRepository dvoraneRepository;
 	
 	@Autowired
-	public PredavanjaController(PredavanjeRepository predavanjeRepository) {
+	public PredavanjaController(PredavanjeRepository predavanjeRepository, DvoraneRepository dvoraneRepository) {
 		this.predavanjeRepository = predavanjeRepository;
+		this.dvoraneRepository = dvoraneRepository;
 	}
 
 	@ModelAttribute("listaPredavanja")
@@ -84,5 +87,14 @@ public class PredavanjaController {
 		model.addAttribute("popisPredavanja", predavanjeRepository.findAll());
 		
 		return "unesenaPredavanja";
+	}
+	
+	@GetMapping("/prikaziDvorane")
+	public String showClassroms(Model model) {
+		log.info("Prikazujem dvorane");
+		
+		model.addAttribute("popisDvorana", dvoraneRepository.findAvailable());
+		
+		return "dvorane";
 	}
 }
