@@ -39,4 +39,28 @@ public class JdbcDvoraneRepository implements DvoraneRepository {
 		return dvorana;
 	}
 
+	@Override
+	public Dvorana findOne(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Dvorana save(Dvorana dvorana) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Dvorana update(Dvorana dvorana) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
