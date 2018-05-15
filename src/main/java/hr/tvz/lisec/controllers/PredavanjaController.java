@@ -93,7 +93,7 @@ public class PredavanjaController {
 	public String showClassroms(Model model) {
 		log.info("Prikazujem dvorane");
 		
-		model.addAttribute("popisDvorana", dvoraneRepository.findAvailable());
+		model.addAttribute("popisDvorana", dvoraneRepository.findAll());
 		
 		return "dvorane";
 	}
