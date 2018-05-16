@@ -22,7 +22,7 @@ public class Predavanje {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Valid
 	@OneToOne(targetEntity=Predavac.class, cascade=CascadeType.ALL)
