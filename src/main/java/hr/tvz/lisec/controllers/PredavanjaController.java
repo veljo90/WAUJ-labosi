@@ -85,4 +85,26 @@ public class PredavanjaController {
 		
 		return "unesenaPredavanja";
 	}
+	
+	@GetMapping("/pretraziPredavanja")
+	public String searchClasses(Model model) {
+		log.info("Prikazujem stranicu za pretragu predavanja");
+
+		model.addAttribute("predavanje", new Predavanje());
+		
+		return "pretragaPredavanja";
+	}
+	
+	@PostMapping("/pretraziPredavanja")
+	public String processSearchClasses(Predavanje predavanje, Model model) {
+		log.info("Pretražujem predavanje sa temom:" + predavanje.getTema());
+		
+		ArrayList<Predavanje> popisPredavanja = (ArrayList<Predavanje>) predavanjeRepository.findByTemaContaining(predavanje.getTema());
+		
+		model.addAttribute("popisPredavanja", popisPredavanja);
+		
+		return "pretragaPredavanja";
+	}
+	
+	
 }
