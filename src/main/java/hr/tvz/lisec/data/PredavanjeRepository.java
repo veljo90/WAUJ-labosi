@@ -1,11 +1,16 @@
 package hr.tvz.lisec.data;
 
+import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
 import hr.tvz.lisec.entities.Predavanje;
 
-public interface PredavanjeRepository {
+public interface PredavanjeRepository extends CrudRepository<Predavanje, Long> {
 	Iterable<Predavanje> findAll();
-	Predavanje findOne(Long id);
+	Optional<Predavanje> findById(Long id);
+	@SuppressWarnings("unchecked")
 	Predavanje save(Predavanje predavanje);
-	Predavanje update(Predavanje predavanje);
-	void delete(Long id);
+	Iterable<Predavanje> findByTemaContaining(String tema);
+	void deleteById(Long id);
 }
