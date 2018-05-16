@@ -1,5 +1,7 @@
 package hr.tvz.lisec.rest;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +35,9 @@ public class PredavanjeRestController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Predavanje> findOne(@PathVariable Long id) {
 		
-		Predavanje predavanje = predavanjeRepository.findOne(id);
-		if(predavanje != null) {
-			return new ResponseEntity<Predavanje>(predavanje, HttpStatus.FOUND);
+		Optional<Predavanje> predavanje = predavanjeRepository.findById(id);
+		if(predavanje.isPresent()) {
+			return new ResponseEntity<Predavanje>(predavanje.get(), HttpStatus.FOUND);
 		} else {
 			return new ResponseEntity<Predavanje>(HttpStatus.NOT_FOUND);
 		}
@@ -49,12 +51,12 @@ public class PredavanjeRestController {
 	
 	@PutMapping("/{id}")
 	public Predavanje update(@RequestBody Predavanje predavanje) {
-		return predavanjeRepository.update(predavanje);
+		return predavanjeRepository.save(predavanje);
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		predavanjeRepository.delete(id);
+		predavanjeRepository.deleteById(id);
 	}
 }

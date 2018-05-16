@@ -1,5 +1,7 @@
 package hr.tvz.lisec.rest;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +34,9 @@ public class PredavacRestController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Predavac> findOne(@PathVariable Long id) {
 		
-		Predavac predavac = predavacRepository.findOne(id);
-		if(predavac != null) {
-			return new ResponseEntity<Predavac>(predavac, HttpStatus.FOUND);
+		Optional<Predavac> predavac = predavacRepository.findById(id);
+		if(predavac.isPresent()) {
+			return new ResponseEntity<Predavac>(predavac.get(), HttpStatus.FOUND);
 		} else {
 			return new ResponseEntity<Predavac>(HttpStatus.NOT_FOUND);
 		}
@@ -48,12 +50,12 @@ public class PredavacRestController {
 	
 	@PutMapping("/{id}")
 	public Predavac update(@RequestBody Predavac predavac) {
-		return predavacRepository.update(predavac);
+		return predavacRepository.save(predavac);
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		predavacRepository.delete(id);
+		predavacRepository.deleteById(id);
 	}
 }
