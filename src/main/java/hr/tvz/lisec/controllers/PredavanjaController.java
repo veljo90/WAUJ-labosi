@@ -91,15 +91,39 @@ public class PredavanjaController {
 		log.info("Prikazujem stranicu za pretragu predavanja");
 
 		model.addAttribute("predavanje", new Predavanje());
+		model.addAttribute("vrste", Predavanje.Vrsta.values());
+		model.addAttribute("pozicije", Predavac.Pozicija.values());
 		
 		return "pretragaPredavanja";
 	}
 	
 	@PostMapping("/pretraziPredavanja")
 	public String processSearchClasses(Predavanje predavanje, Model model) {
-		log.info("Pretražujem predavanje sa temom:" + predavanje.getTema());
+		log.info("Pretražujem predavanje:" + predavanje);
 		
-		ArrayList<Predavanje> popisPredavanja = (ArrayList<Predavanje>) predavanjeRepository.findByTemaContaining(predavanje.getTema());
+		String ime = predavanje.getPredavac().getIme();
+		if (ime == null)
+			ime = "";
+
+		String tema = predavanje.getTema();
+		if (tema == null) {
+			tema = "";
+		}
+		String sadrzaj = predavanje.getSadrzaj();
+		if (sadrzaj == null)
+			sadrzaj = "";
+		
+		ArrayList<Predavanje> popisPredavanja = null;
+		
+		if (predavanje.getPredavac().getPozicija() == null && predavanje.getVrsta() == null) {
+			popisPredavanja = (ArrayList<Predavanje>) predavanjeRepository.findByPredavac_ImeContainingAndTemaContainingIgnoreCaseAndSadrzajContainingAndObjavljeno(ime, tema, sadrzaj, predavanje.getObjavljeno());
+		} else if (predavanje.getPredavac().getPozicija() == null) {
+			popisPredavanja = (ArrayList<Predavanje>) predavanjeRepository.findByPredavac_ImeContainingAndTemaContainingIgnoreCaseAndSadrzajContainingAndVrstaAndObjavljeno(ime, tema, sadrzaj, predavanje.getVrsta(), predavanje.getObjavljeno());
+		} else if (predavanje.getVrsta() == null) {
+			popisPredavanja = (ArrayList<Predavanje>) predavanjeRepository.findByPredavac_ImeContainingAndPredavac_PozicijaAndTemaContainingIgnoreCaseAndSadrzajContainingAndObjavljeno(ime, predavanje.getPredavac().getPozicija(), tema, sadrzaj, predavanje.getObjavljeno());
+		} else {
+			popisPredavanja = (ArrayList<Predavanje>) predavanjeRepository.findByPredavac_ImeContainingAndPredavac_PozicijaAndTemaContainingIgnoreCaseAndSadrzajContainingAndVrstaAndObjavljeno(ime, predavanje.getPredavac().getPozicija(), tema, sadrzaj, predavanje.getVrsta(), predavanje.getObjavljeno());
+		}
 		
 		model.addAttribute("popisPredavanja", popisPredavanja);
 		
