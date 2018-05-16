@@ -36,14 +36,48 @@
 			<br><br>
 			
 			<form method="post" th:object="${predavanje}">
-				<input type="text" class="form-control" th:field="*{tema}" placeholder="Unesite temu predavanja">
+				<label class="control-label col-sm-2" for="predavac.ime">Predavač:</label>
+				<div class="col-sm-8 col-md-4">
+					<input type="text" class="form-control" th:field="*{predavac.ime}" placeholder="Unesite ime predavača">
+				</div>
+
+				<label class="control-label col-sm-2" for="predavac.pozicija">Pozicija u firmi:</label>
+				<div class="col-sm-8 col-md-4">
+					<select th:field="*{predavac.pozicija}" class="form-control">
+		                <option value="" selected class="hide">Odaberite poziciju predavača</option>
+		                <option th:each="pozicija : ${pozicije}" th:value="${pozicija}" th:text="${pozicija}"></option>
+		            </select>
+	            </div>
+
+                <label class="control-label col-sm-2" for="tema">Tema:</label>
+				<div class="col-sm-8 col-md-4">
+					<input type="text" class="form-control" th:field="*{tema}" placeholder="Unesite temu predavanja">
+				</div>
+				<label class="control-label col-sm-2" for="sadrzaj">Kratki sadržaj:</label>
+				<div class="col-sm-8 col-md-4">
+					<input type="text" class="form-control" th:field="*{sadrzaj}" placeholder="Unesite sadrzaj predavanja">
+				</div>
+				<label class="control-label col-sm-2" for="vrsta">Vrsta predavanja:</label>
+				<div class="col-sm-8 col-md-4">
+					<select th:field="*{vrsta}" class="form-control">
+	                    <option value="" selected class="hide">Odaberite vrstu predavanja</option>
+	                    <option th:each="vrsta : ${vrste}" th:value="${vrsta}" th:text="${vrsta}"></option>
+	                </select>
+                </div>
+
+				<label class="checkbox-inline">
+					<input type="checkbox" th:field="*{objavljeno}">
+					Predavanje objavljeno
+				</label>
+				
 				<input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 				<br>
-				<input type="submit" class="btn btn-primary" value="Pretraži">
+				<br>
+				<input type="submit" class="btn btn-primary col-sm-offset-10" value="Pretraži">
 			</form>
 		</header>
 		<br>
-		<table class="table table-striped" th:if="${predavanje.getTema() != null}">
+		<table class="table table-striped">
 			<tr>
 				<th>Predavač</th>
 				<th>Pozicija u firmi</th>
