@@ -22,6 +22,7 @@
 			<div sec:authorize="isAuthenticated()">
 				<span class="col-md-offset-1 col-sm-offset-1">
 					<a class="btn btn-default" th:href="@{/predavanja/prikaziPredavanja}">Prikaži sva predavanja</a>
+					<a class="btn btn-default" th:href="@{/predavanja/pretraziPredavanja}">Pretraži predavanja</a>
 				</span>
 			
 				<form method="POST" th:action="@{/logout}" class="col-sm-offset-4 col-md-offset-4 inline">
