@@ -1,5 +1,6 @@
 package hr.tvz.lisec.controllers;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class PredavanjaController {
 			return "novoPredavanje";
 		}
 		
+		predavanje.setDatumUpisa(LocalDateTime.now());
 		predavanjeRepository.save(predavanje);
 		
 		log.info("Predavanje je spremljeno");
