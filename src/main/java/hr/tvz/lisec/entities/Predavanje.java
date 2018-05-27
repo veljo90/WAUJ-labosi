@@ -1,5 +1,7 @@
 package hr.tvz.lisec.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,6 +25,8 @@ public class Predavanje {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	private LocalDateTime datumUpisa;
 	
 	@Valid
 	@OneToOne(targetEntity=Predavac.class, cascade=CascadeType.ALL)
