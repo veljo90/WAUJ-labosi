@@ -11,6 +11,7 @@ create table if not exists KorisnikPrava (
 
 create table if not exists Predavanje (
 	id identity,
+	datumUpisa datetime not null,
 	tema varchar(50) not null,
 	sadrzaj varchar(300) not null,
 	vrsta varchar(20) not null,
