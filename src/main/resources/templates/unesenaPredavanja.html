@@ -3,51 +3,29 @@
 	  xmlns:th="http://www.thymeleaf.org"
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/style.css">
-	<title>Konferencija</title>
-</head>
+<head th:replace="fragments/header.html :: headerFiles"></head>
 
 <body>
 	<div class="container">
-		<header>
-			<img th:src="@{/images/logo1.png}" alt="Logo" class="col-md-offset-3 col-sm-offset-3">
-			
-			<div sec:authorize="isAuthenticated()">
-				<span class="col-md-offset-1 col-sm-offset-1">
-					<a class="btn btn-default" th:href="@{/predavanja/prikaziPredavanja}">Prikaži sva predavanja</a>
-					<a class="btn btn-default" th:href="@{/predavanja/pretraziPredavanja}">Pretraži predavanja</a>
-				</span>
-			
-				<form method="POST" th:action="@{/logout}" class="col-sm-offset-4 col-md-offset-4 inline">
-					Ulogirani ste kao <span sec:authentication="name">Korisnik</span>.
-					<input type="submit" value="Logout" class="btn btn-danger" />
-				</form>
-			</div>
-			
-			<br>
-			
-			<h3>
-				Popis predavanja
-			</h3>
-		</header>
+		<header th:replace="fragments/header.html :: header"></header>
+		<h3 th:text="#{msg.lectures.title}">
+			Popis predavanja
+		</h3>
 		<br>
 		<table class="table table-striped">
 			<tr>
-				<th>Predavač</th>
-				<th>Pozicija u firmi</th>
-				<th>Tema</th>
-				<th>Kratki sadržaj</th>
-				<th>Vrsta predavanja</th>
+				<th th:text="#{msg.table.lecturer}">Predavač</th>
+				<th th:text="#{msg.table.position}">Pozicija u firmi</th>
+				<th th:text="#{msg.table.subject}">Tema</th>
+				<th th:text="#{msg.table.abstract}">Kratki sadržaj</th>
+				<th th:text="#{msg.table.type}">Vrsta predavanja</th>
 			</tr>
 			<tr th:each="predavanje : ${popisPredavanja}">
 				<td>
 					<span th:text="${predavanje.predavac.ime}">PREDAVAC.IME</span>
 				</td>
 				<td>
-					<span th:text="${predavanje.predavac.pozicija}">PREDAVAC.POZICIJA</span>
+					<span th:text="#{'enum.pozicija.'+${{predavanje.predavac.pozicija}}}">PREDAVAC.POZICIJA</span>
 				</td>
 				<td>
 					<span th:text="${predavanje.tema}">TEMA</span>
@@ -56,12 +34,12 @@
 					<span th:text="${predavanje.sadrzaj}">SADRZAJ</span>
 				</td>
 				<td>
-					<span th:text="${predavanje.vrsta}">VRSTA</span>
+					<span th:text="#{'enum.vrsta.'+${{predavanje.vrsta}}}">VRSTA</span>
 				</td>
 			</tr>
 		</table>
 		<br>
-		<a class="btn btn-default" th:href="@{/predavanja/novo}">Povratak</a>
+		<a class="btn btn-default" th:href="@{/predavanja/novo}" th:text="#{msg.backButton}">Povratak</a>
 		<br><br>
 	</div>
 </body>

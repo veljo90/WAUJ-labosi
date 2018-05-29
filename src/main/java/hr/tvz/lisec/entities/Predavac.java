@@ -21,10 +21,10 @@ public class Predavac {
 	
 	//@NotEmpty(message = "Niste unijeli ime predavača")
 	@NotNull
-	@Size(min = 2, max = 20, message = "Ime treba sadržavati između 2 i 20 znakova")
+	@Size(min = 2, max = 20, message = "{msg.validation.name}")
 	private String ime;
 	
-	@NotNull(message = "Niste odabrali poziciju predavača")
+	@NotNull(message = "{msg.validation.position}")
 	private Pozicija pozicija;
 	
 	public static enum Pozicija {

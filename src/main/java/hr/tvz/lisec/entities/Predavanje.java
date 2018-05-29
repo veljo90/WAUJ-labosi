@@ -37,15 +37,15 @@ public class Predavanje {
 	
 	//@NotEmpty(message = "Niste unijeli temu predavanja")
 	@NotNull
-	@Size(min = 5, max = 20, message = "Tema mora sadržavati između 5 i 20 znakova")
+	@Size(min = 5, max = 20, message = "{msg.validation.subject}")
 	private String tema;
 	
 	//@NotEmpty(message = "Niste unijeli sadržaj predavanja")
 	@NotNull
-	@Size(min = 30, max = 300, message = "Sadržaj mora sadržavati između 30 i 300 znakova")
+	@Size(min = 30, max = 300, message = "{msg.validation.abstract}")
 	private String sadrzaj;
 	
-	@NotNull(message = "Niste odabrali vrstu predavanja")
+	@NotNull(message = "{msg.validation.type}")
 	private Vrsta vrsta;
 	
 	private Boolean objavljeno = true;

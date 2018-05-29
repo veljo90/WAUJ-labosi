@@ -4,35 +4,35 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <title>Konferencija</title>
-</head>
+<head th:replace="/fragments/header.html :: headerFiles"></head>
 
 <body>
     <div class="container">
-        <header>
-            <img th:src="@{/images/logo1.png}" alt="Logo">
+        <header th:replace="/fragments/header.html :: header">
+<!--             <img th:src="@{/images/logo1.png}" alt="Logo"> -->
             
-            <div sec:authorize="isAuthenticated()">
-				<span class="col-md-offset-1 col-sm-offset-1">
-					<a class="btn btn-default" th:href="@{/predavanja/prikaziPredavanja}">Prikaži sva predavanja</a>
-					<a class="btn btn-default" th:href="@{/predavanja/pretraziPredavanja}">Pretraži predavanja</a>
-				</span>
+<!--             <div sec:authorize="isAuthenticated()"> -->
+<!-- 				<span class="col-md-offset-1 col-sm-offset-1"> -->
+<!-- 					<a class="btn btn-default" th:href="@{/predavanja/prikaziPredavanja}" th:text="#{msg.allLecturesButton}">Prikaži sva predavanja</a> -->
+<!-- 					<a class="btn btn-default" th:href="@{/predavanja/pretraziPredavanja}" th:text="#{msg.searchLectures}">Pretraži predavanja</a> -->
+<!-- 				</span> -->
 			
-				<form method="POST" th:action="@{/logout}" class="col-sm-offset-4 col-md-offset-4 inline">
-					Ulogirani ste kao <span sec:authentication="name">Korisnik</span>.
-					<input type="submit" value="Logout" class="btn btn-danger" />
-				</form>
-			</div>
+<!-- 				<form method="POST" th:action="@{/logout}" class="col-sm-offset-4 col-md-offset-4 inline"> -->
+<!-- 					<span th:text="#{msg.loginMessage}">Ulogirani ste kao </span><span sec:authentication="name">Korisnik</span>. -->
+<!-- 					<input type="submit" value="Logout" class="btn btn-danger" /> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<!-- 			<span th:text="#{msg.lang.current}">Jezik:</span> -->
+<!-- 			<select id="locales"> -->
+<!--  				<option value="hr" th:selected="${#locale.language == 'hr'}" th:text="#{msg.lang.hr}"></option> -->
+<!-- 				<option value="en" th:selected="${#locale.language == 'en'}" th:text="#{msg.lang.en}"></option> -->
+<!-- 			</select> -->
         </header>
         <div class="center-block text-center">
-            <a class="btn btn-primary centerButton" th:href="@{/predavanja/novo}">Predloži novo predavanje</a>
+            <a class="btn btn-primary centerButton" th:href="@{/predavanja/novo}" th:text="#{msg.newLectureButton}">Predloži novo predavanje</a>
         </div>
     </div>
+    
 </body>
 
 </html>

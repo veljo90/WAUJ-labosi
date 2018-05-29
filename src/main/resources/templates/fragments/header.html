@@ -28,8 +28,8 @@
 			<form method="POST" th:action="@{/logout}"
 				class="col-sm-offset-4 col-md-offset-4 inline">
 				<span th:text="#{msg.loginMessage}">Ulogirani ste kao </span><span
-					sec:authentication="name">Korisnik</span>. <input type="submit"
-					value="Logout" class="btn btn-danger" />
+					sec:authentication="name">Korisnik</span>.
+				<input type="submit" th:value="#{msg.logoutButton}" class="btn btn-danger" />
 			</form>
 		</div>
 		<span th:text="#{msg.lang.current}">Jezik:</span>
