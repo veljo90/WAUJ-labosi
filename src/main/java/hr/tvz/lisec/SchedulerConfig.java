@@ -8,7 +8,7 @@ import org.quartz.TriggerBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import Scheduler.ObjavaJob;
+import hr.tvz.lisec.scheduler.ObjavaJob;
 
 @Configuration
 public class SchedulerConfig {

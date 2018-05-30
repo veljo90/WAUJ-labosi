@@ -1,4 +1,4 @@
-package Scheduler;
+package hr.tvz.lisec.scheduler;
 
 import java.time.LocalDateTime;
 
